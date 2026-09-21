@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Featured Rewards Center</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f7f9;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111827}
+.rewards-page{width:100%;max-width:1280px;margin:0 auto;padding:70px 20px}
+.rewards-hero{text-align:center;max-width:760px;margin:0 auto 55px}
+.hero-badge{display:inline-flex;padding:9px 17px;border-radius:50px;background:#111827;color:#fff;font-size:11px;font-weight:800;letter-spacing:2px;box-shadow:0 8px 25px rgba(0,0,0,.12)}
+.rewards-hero h1{margin:22px 0 15px;font-size:clamp(42px,7vw,72px);line-height:.98;letter-spacing:-4px;font-weight:900}
+.rewards-hero h1 span{background:linear-gradient(90deg,#111827,#6b7280);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rewards-hero p{max-width:600px;margin:0 auto;color:#6b7280;font-size:17px;line-height:1.7}
+.rewards-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.reward-card{position:relative;overflow:hidden;background:#fff;border:1px solid #e5e7eb;border-radius:28px;box-shadow:0 15px 45px rgba(0,0,0,.07);transition:transform .35s ease,box-shadow .35s ease}
+.reward-card:hover{transform:translateY(-8px);box-shadow:0 28px 70px rgba(0,0,0,.14)}
+.offer-badge{position:absolute;z-index:5;top:18px;left:18px;padding:8px 12px;border-radius:50px;background:rgba(17,24,39,.93);color:#fff;font-size:9px;font-weight:900;letter-spacing:1.2px;box-shadow:0 5px 15px rgba(0,0,0,.15)}
+.canada-badge{background:#c62828}
+.brand-area{height:225px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.nike-brand{background:linear-gradient(145deg,#f4f4f4,#fff)}
+.nike-text{font-size:54px;font-weight:950;font-style:italic;letter-spacing:-5px;color:#111}
+.brand-mark{position:absolute;right:30px;bottom:25px;font-size:45px;font-weight:900;transform:rotate(-15deg);color:#111}
+.walmart-brand{background:linear-gradient(145deg,#fff8e1,#fff)}
+.walmart-logo{display:flex;align-items:center;gap:8px;color:#0071ce}
+.walmart-logo strong{font-size:42px;font-weight:800;letter-spacing:-2px}
+.walmart-logo span{font-size:39px;color:#ffc220}
+.question-brand{background:linear-gradient(145deg,#f5f7ff,#fff);flex-direction:column}
+.question-icon{width:70px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#111827;color:#fff;font-size:38px;font-weight:900;margin-bottom:12px}
+.question-title{font-size:19px;letter-spacing:3px;color:#374151;text-align:center}
+.question-title strong{display:block;color:#111827;font-size:25px}
+.cashapp-brand{background:linear-gradient(145deg,#e9fdf1,#fff)}
+.cashapp-logo{width:75px;height:75px;display:flex;align-items:center;justify-content:center;border-radius:22px;background:#00d64f;color:#fff;font-size:43px;font-weight:900;box-shadow:0 12px 30px rgba(0,214,79,.25)}
+.cashapp-name{margin-left:13px;font-size:31px;font-weight:800;color:#111}
+.reward-info{padding:27px 28px 30px}
+.reward-category{margin-bottom:7px;color:#9ca3af;font-size:10px;font-weight:900;letter-spacing:1.6px}
+.reward-info h2{margin:0;color:#111827;font-size:29px;line-height:1.1;font-weight:850;letter-spacing:-1px}
+.reward-price{margin-top:13px;font-size:43px;line-height:1;font-weight:950;letter-spacing:-2px;color:#111827}
+.reward-price span{display:block;margin-top:7px;font-size:9px;line-height:1;font-weight:900;letter-spacing:2px;color:#9ca3af}
+.reward-info p{min-height:82px;margin:18px 0 23px;color:#6b7280;font-size:14px;line-height:1.7}
+.reward-cta{display:flex;align-items:center;justify-content:space-between;width:100%;padding:16px 18px;border-radius:14px;color:#fff!important;text-decoration:none!important;font-size:13px;font-weight:850;transition:all .25s ease}
+.reward-cta span{font-size:22px;transition:transform .25s ease}
+.reward-cta:hover span{transform:translateX(5px)}
+.nike-cta{background:linear-gradient(135deg,#111,#3b3b3b);box-shadow:0 10px 25px rgba(0,0,0,.17)}
+.walmart-cta{background:linear-gradient(135deg,#0071ce,#005baa);box-shadow:0 10px 25px rgba(0,113,206,.2)}
+.canada-cta{background:linear-gradient(135deg,#c62828,#9e1f1f);box-shadow:0 10px 25px rgba(198,40,40,.2)}
+.cashapp-cta{background:linear-gradient(135deg,#00c853,#00a63c);box-shadow:0 10px 25px rgba(0,200,83,.2)}
+.reward-cta:hover{transform:translateY(-2px)}
+.rewards-footer{max-width:850px;margin:40px auto 0;text-align:center}
+.footer-line{width:60px;height:3px;margin:0 auto 18px;border-radius:10px;background:#111827}
+.rewards-footer p{margin:0;color:#9ca3af;font-size:11px;line-height:1.7}
+@media(max-width:1000px){.rewards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){
+.rewards-page{padding:45px 15px}
+.rewards-hero{margin-bottom:35px}
+.rewards-hero h1{font-size:43px;letter-spacing:-2.5px}
+.rewards-hero p{font-size:15px}
+.rewards-grid{grid-template-columns:1fr;gap:18px}
+.brand-area{height:210px}
+.reward-info{padding:25px}
+.reward-price{font-size:40px}
+}
+</style>
+</head>
+
+<body>
+<section class="rewards-page">
+
+<div class="rewards-hero">
+<div class="hero-badge">✦ REWARDS CENTER</div>
+<h1>Choose Your<br><span>Featured Reward</span></h1>
+<p>Explore our featured reward opportunities and discover offers available in your region.</p>
+</div>
+
+<div class="rewards-grid">
+
+<article class="reward-card">
+<div class="offer-badge">FEATURED REWARD</div>
+<div class="brand-area nike-brand">
+<div class="nike-text">NIKE</div>
+<div class="brand-mark">✓</div>
+</div>
+<div class="reward-info">
+<div class="reward-category">GIFT CARD</div>
+<h2>Nike</h2>
+<div class="reward-price">$100<span>GIFT CARD</span></div>
+<p>Discover the featured Nike gift card opportunity and explore the available offer.</p>
+<a href="#" class="reward-cta nike-cta" target="_blank" rel="noopener noreferrer">Explore $100 Reward <span>→</span></a>
+</div>
+</article>
+
+<article class="reward-card">
+<div class="offer-badge">FEATURED REWARD</div>
+<div class="brand-area walmart-brand">
+<div class="walmart-logo"><strong>Walmart</strong><span>✦</span></div>
+</div>
+<div class="reward-info">
+<div class="reward-category">GIFT CARD</div>
+<h2>Walmart</h2>
+<div class="reward-price">$1,000<span>GIFT CARD</span></div>
+<p>Explore the featured Walmart gift card opportunity and view the available reward offer.</p>
+<a href="#" class="reward-cta walmart-cta" target="_blank" rel="noopener noreferrer">Explore $1,000 Reward <span>→</span></a>
+</div>
+</article>
+
+<article class="reward-card">
+<div class="offer-badge canada-badge">🇨🇦 CANADA ONLY</div>
+<div class="brand-area question-brand">
+<div class="question-icon">?</div>
+<div class="question-title">ANSWER<strong>QUESTIONS</strong></div>
+</div>
+<div class="reward-info">
+<div class="reward-category">SURVEY REWARD</div>
+<h2>Answer Questions</h2>
+<div class="reward-price">$750<span>REWARD</span></div>
+<p>Answer available questions and explore the $750 reward opportunity available to participants in Canada.</p>
+<a href="#" class="reward-cta canada-cta" target="_blank" rel="noopener noreferrer">Answer Questions <span>→</span></a>
+</div>
+</article>
+
+<article class="reward-card">
+<div class="offer-badge">FEATURED REWARD</div>
+<div class="brand-area cashapp-brand">
+<div class="cashapp-logo">$</div>
+<div class="cashapp-name">Cash App</div>
+</div>
+<div class="reward-info">
+<div class="reward-category">CASH REWARD</div>
+<h2>Cash App</h2>
+<div class="reward-price">$1,000<span>CASH GIFT CARD</span></div>
+<p>Explore the featured Cash App reward opportunity and check the available offer.</p>
+<a href="#" class="reward-cta cashapp-cta" target="_blank" rel="noopener noreferrer">Explore $1,000 Reward <span>→</span></a>
+</div>
+</article>
+
+<article class="reward-card">
+<div class="offer-badge">POPULAR REWARD</div>
+<div class="brand-area walmart-brand">
+<div class="walmart-logo"><strong>Walmart</strong><span>✦</span></div>
+</div>
+<div class="reward-info">
+<div class="reward-category">GIFT CARD</div>
+<h2>Walmart</h2>
+<div class="reward-price">$500<span>GIFT CARD</span></div>
+<p>Explore the $500 Walmart gift card opportunity and view the available offer.</p>
+<a href="#" class="reward-cta walmart-cta" target="_blank" rel="noopener noreferrer">Explore $500 Reward <span>→</span></a>
+</div>
+</article>
+
+</div>
+
+<div class="rewards-footer">
+<div class="footer-line"></div>
+<p>Offers, availability, eligibility and reward values may vary by offer and location. Please review the applicable offer terms before participating.</p>
+</div>
+
+</section>
+</body>
+</html>
